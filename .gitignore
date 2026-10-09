@@ -1,0 +1,22 @@
+# Variables de entorno (credenciales locales)
+.env
+
+# Dependencias
+/vendor/
+/node_modules/
+
+# Logs y temporales
+*.log
+/logs/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
+*.swp
+
+# Volúmenes de datos de Docker (por si se usan bind mounts)
+/data/
