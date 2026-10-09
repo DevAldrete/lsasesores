@@ -1,0 +1,66 @@
+# Entorno de desarrollo LS ASESORES
+# Levanta web (PHP+Apache), base de datos (MariaDB) y Adminer.
+#
+#   docker compose up -d --build
+#
+#   Landing : http://localhost:8080
+#   Adminer : http://localhost:8081
+#   MariaDB : localhost:3307
+#
+# Los puertos 8080/8081/3307 se eligieron para NO chocar con XAMPP
+# (que usa 80 / 3306) si ambos se ejecutan a la vez.
+
+services:
+  web:
+    build:
+      context: .
+    container_name: lsasesores_web
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: lsasesores
+      DB_USER: lsasesores
+      DB_PASS: lsasesores
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.11
+    container_name: lsasesores_db
+    ports:
+      - "3307:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: lsasesores
+      MARIADB_USER: lsasesores
+      MARIADB_PASSWORD: lsasesores
+    volumes:
+      # El esquema se importa automáticamente la primera vez que se crea el volumen.
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  adminer:
+    image: adminer:latest
+    container_name: lsasesores_adminer
+    depends_on:
+      - db
+    ports:
+      - "8081:8080"
+    environment:
+      ADMINER_DEFAULT_SERVER: db
+    restart: unless-stopped
+
+volumes:
+  db_data:
