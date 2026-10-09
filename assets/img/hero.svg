@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" role="img" aria-label="Panel de asesoría contable y fiscal">
+    <defs>
+        <linearGradient id="heroBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E3EEFB"/>
+            <stop offset="1" stop-color="#C7DDF7"/>
+        </linearGradient>
+        <linearGradient id="heroBar" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#0A2A4E"/>
+            <stop offset="1" stop-color="#1976D2"/>
+        </linearGradient>
+        <filter id="heroShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0A2A4E" flood-opacity="0.18"/>
+        </filter>
+    </defs>
+
+    <!-- Fondo -->
+    <rect width="560" height="460" rx="28" fill="url(#heroBg)"/>
+    <circle cx="462" cy="86" r="46" fill="#1976D2" opacity="0.14"/>
+    <circle cx="86" cy="380" r="64" fill="#0A2A4E" opacity="0.08"/>
+
+    <!-- Tarjeta principal -->
+    <g filter="url(#heroShadow)">
+        <rect x="86" y="70" width="330" height="280" rx="20" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Encabezado de la tarjeta -->
+    <circle cx="116" cy="104" r="10" fill="#1259A6"/>
+    <rect x="136" y="96" width="120" height="9" rx="4.5" fill="#0A2A4E"/>
+    <rect x="136" y="112" width="80" height="7" rx="3.5" fill="#9DB4CC"/>
+
+    <!-- Gráfica de barras -->
+    <g>
+        <rect x="116" y="220" width="30" height="80" rx="6" fill="url(#heroBar)"/>
+        <rect x="158" y="190" width="30" height="110" rx="6" fill="url(#heroBar)"/>
+        <rect x="200" y="236" width="30" height="64" rx="6" fill="url(#heroBar)"/>
+        <rect x="242" y="164" width="30" height="136" rx="6" fill="#1976D2"/>
+        <rect x="284" y="206" width="30" height="94" rx="6" fill="url(#heroBar)"/>
+    </g>
+    <line x1="116" y1="312" x2="326" y2="312" stroke="#C7DDF7" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Etiqueta de tendencia -->
+    <rect x="266" y="86" width="128" height="44" rx="12" fill="#0A2A4E"/>
+    <path d="M286 116l14-16 10 9 14-17" fill="none" stroke="#6FB1F0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="340" y="100" width="40" height="6" rx="3" fill="#FFFFFF" opacity="0.85"/>
+    <rect x="340" y="112" width="26" height="6" rx="3" fill="#6FB1F0"/>
+
+    <!-- Documento flotante -->
+    <g filter="url(#heroShadow)">
+        <rect x="352" y="196" width="130" height="164" rx="16" fill="#FFFFFF"/>
+    </g>
+    <rect x="372" y="216" width="60" height="9" rx="4.5" fill="#0A2A4E"/>
+    <rect x="372" y="236" width="90" height="7" rx="3.5" fill="#9DB4CC"/>
+    <rect x="372" y="252" width="90" height="7" rx="3.5" fill="#9DB4CC"/>
+    <rect x="372" y="268" width="70" height="7" rx="3.5" fill="#9DB4CC"/>
+    <rect x="372" y="292" width="90" height="42" rx="10" fill="#E3EEFB"/>
+    <path d="M386 318l10-10 8 7 12-14" fill="none" stroke="#1259A6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Sello de verificación -->
+    <g filter="url(#heroShadow)">
+        <circle cx="126" cy="330" r="34" fill="#1259A6"/>
+    </g>
+    <path d="M110 330l11 11 21-23" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
