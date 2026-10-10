@@ -121,6 +121,53 @@ Requiere [XAMPP](https://www.apachefriends.org/) (Apache + MySQL/MariaDB + PHP 8
 
 ---
 
+## ☁️ Deploy en Render
+
+El proyecto se puede desplegar en [Render](https://render.com) como **Web Service**
+usando el runtime **Docker**.
+
+### Configuración del servicio
+
+| Campo            | Valor                                                        |
+|------------------|--------------------------------------------------------------|
+| Language         | `Docker`                                                      |
+| Branch           | `main`                                                        |
+| Dockerfile Path  | `Dockerfile` (está en la raíz)                               |
+| Plan             | Free (o el que prefieras)                                    |
+
+La imagen ya copia el código dentro de `/var/www/html`, así que **no** depende
+de volúmenes. El arranque (`docker/start-apache.sh`) hace que Apache escuche en
+el puerto que Render entrega mediante la variable `PORT`.
+
+### Base de datos
+
+> ⚠️ `docker-compose.yml` **no** se usa en Render: Render ejecuta un solo
+> contenedor (tu Web Service). La base de datos debe ser **externa**.
+
+Opciones:
+
+1. **MySQL externo gratuito** (lo más simple): por ejemplo [Aiven](https://aiven.io/),
+   [Clever Cloud](https://www.clever-cloud.com/) o [Railway](https://railway.app/).
+   Importa `database/schema.sql` en ese servicio y usa sus credenciales.
+2. **Servicio MySQL privado en Render**: despliega la imagen `mariadb:10.11`/`mysql`
+   como *Private Service* (requiere plan de pago) y conéctate por el nombre del
+   servicio (`mi-mysql:3306`).
+
+En cualquiera de los casos, agrega estas variables en **Environment** de tu Web
+Service en Render:
+
+| Variable  | Ejemplo                                    |
+|-----------|--------------------------------------------|
+| `DB_HOST` | `tu-host-de-base-de-datos`                 |
+| `DB_PORT` | `3306`                                      |
+| `DB_NAME` | `lsasesores`                               |
+| `DB_USER` | `tu_usuario`                               |
+| `DB_PASS` | `tu_contraseña`                            |
+
+`includes/config.php` las lee automáticamente desde el entorno, sin cambios de código.
+
+---
+
 ## 🔧 Configuración (opcional)
 
 Copia `.env.example` a `.env` solo si necesitas cambiar las credenciales:
